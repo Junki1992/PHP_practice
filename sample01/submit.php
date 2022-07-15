@@ -9,10 +9,15 @@
 </head>
 
 <body>
-    <?php
-    $today = new DateTime();
-    echo 'hello world';
-    ?>
+    <h2>ご注文のドリンク</h2>
+    <?php $ordered = $_REQUEST['selection']; ?>
+    <ul>
+        <li>
+            <?php foreach ($ordered as $order) : ?>
+                <?php echo $order; ?>
+            <?php endforeach; ?>
+        </li>
+    </ul>
 </body>
 
 </html>

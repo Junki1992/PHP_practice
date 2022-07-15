@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>sample01</title>
+  </head>
+  <body>
+    <form action="submit.php" method="POST">
+      <h2>下記から選択してください</h2>
+      <ul>
+        <li>
+          <label>
+            <input type="checkbox" name="selection[]" value="烏龍茶" />烏龍茶
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="checkbox" name="selection[]" value="コーラ" />コーラ
+          </label>
+        </li>
+        <li>
+          <label>
+            <input
+              type="checkbox"
+              name="selection[]"
+              value="オレンジジュース"
+            />オレンジジュース
+          </label>
+        </li>
+        <li>
+          <label>
+            <input
+              type="checkbox"
+              name="selection[]"
+              value="リンゴジュース"
+            />リンゴジュース
+          </label>
+        </li>
+      </ul>
+      <input type="submit" value="送信する" />
+    </form>
+  </body>
+</html>
