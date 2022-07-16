@@ -10,16 +10,18 @@
 
 <body>
     <h2>ご注文のドリンク</h2>
-    <?php $ordered = $_REQUEST['selection']; ?>
-    <ul>
+    <?php if (!empty($_REQUEST['selection'])) : ?>
+        <?php $ordered = $_REQUEST['selection']; ?>
         <ul>
             <?php foreach ($ordered as $order) : ?>
                 <li>
-                    <?php echo $order . '<br>'; ?>
+                    <?php echo htmlspecialchars($order, ENT_QUOTES) . '<br>'; ?>
                 </li>
             <?php endforeach; ?>
         </ul>
-    </ul>
+    <?php else : ?>
+        <p>ドリンクのご注文はありません。</p>
+    <?php endif; ?>
 </body>
 
 </html>
