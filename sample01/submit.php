@@ -12,11 +12,13 @@
     <h2>ご注文のドリンク</h2>
     <?php $ordered = $_REQUEST['selection']; ?>
     <ul>
-        <li>
+        <ul>
             <?php foreach ($ordered as $order) : ?>
-                <?php echo $order; ?>
+                <li>
+                    <?php echo $order . '<br>'; ?>
+                </li>
             <?php endforeach; ?>
-        </li>
+        </ul>
     </ul>
 </body>
 
