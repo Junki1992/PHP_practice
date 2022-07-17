@@ -1,6 +1,6 @@
 <?php
 function calBMI($weight, $height)
 {
-    $bmi = $weight / $height * $height;
-    return $bmi;
+    $bmi = $weight / ($height * $height);
+    return ceil($bmi);
 }

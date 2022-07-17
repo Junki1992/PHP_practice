@@ -1,7 +1,8 @@
 <?php
+// 計算用の関数を呼び出す
 require('calc.php');
 $weight = 60.5;
-$height = 169.4;
+$height = 1.694;
 $bmi = calBMI($weight, $height);
 ?>
 <!DOCTYPE html>
@@ -16,6 +17,13 @@ $bmi = calBMI($weight, $height);
 
 <body>
   <h2>あなたのBIM: <?php echo ($bmi); ?></h2>
+  <?php if ($bmi < 18.5) {
+    echo 'ちょっと痩せすぎかもしれん';
+  } elseif ($bmi <= 25) {
+    echo '標準ですね';
+  } elseif ($bmi > 25) {
+    echo '肥満です。痩せなさい。';
+  } ?>
 </body>
 
 </html>
