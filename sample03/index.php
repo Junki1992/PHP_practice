@@ -11,8 +11,8 @@
 <body>
     <?php
     $db = new mysqli('localhost:8889', 'root', 'root', 'mydb_new');
-    $ret = $db->query('INSERT INTO training (comment) VALUES ("テストデータです")');
-    if (!$ret) {
+    $stmt = $db->query('INSERT INTO training (comment) VALUES ("テストデータです")');
+    if (!$stmt) {
         die($db->error);
     } else {
         echo 'テストデータを挿入しました';
