@@ -2,7 +2,7 @@
 // 計算用の関数を呼び出す
 require('calc.php');
 $weight = 60.5;
-$height = 1.694;
+$height = 169.4;
 $bmi = calBMI($weight, $height);
 ?>
 <!DOCTYPE html>
