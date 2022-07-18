@@ -11,11 +11,14 @@
 <body>
     <?php
     $db = new mysqli('localhost:8889', 'root', 'root', 'mydb_new');
-    $stmt = $db->query('INSERT INTO training (comment) VALUES ("テストデータです")');
+    $message = 'テスト用のコメントです02';
+    $stmt = $db->prepare('INSERT INTO training (comment) VALUES (?)');
     if (!$stmt) {
         die($db->error);
     } else {
-        echo 'テストデータを挿入しました';
+        $stmt->bind_param('s', $message);
+        $ret = $stmt->execute();
+        echo 'テスト用のコメントを挿入しました';
     }
     ?>
 </body>
