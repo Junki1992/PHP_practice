@@ -13,6 +13,7 @@ require('dbconnect.php');
 
 <body>
     <h1>メモ帳</h1>
+    <a href="/PHP_practice/sample03/input.html">→ 新規投稿</a>
     <?php while ($comments = $comment->fetch_assoc()) : ?>
         <div>
             <h2><a href="#"><?php echo htmlspecialchars($comments['comment']); ?></a></h2>
