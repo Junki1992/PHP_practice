@@ -20,7 +20,11 @@ if (!$comment) {
     <a href="/PHP_practice/sample03/input.html">→ 新規投稿</a>
     <?php while ($comments = $comment->fetch_assoc()) : ?>
         <div>
-            <h2><a href="#"><?php echo htmlspecialchars($comments['comment']); ?></a></h2>
+            <h2>
+                <a href="contents.php?id=<?php echo $comments['id']; ?>">
+                    <?php echo htmlspecialchars($comments['comment']); ?>
+                </a>
+            </h2>
             <time><?php echo htmlspecialchars($comments['created']); ?></time>
         </div>
         <hr>
