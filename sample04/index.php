@@ -1,5 +1,9 @@
 <?php
 require('dbconnect.php');
+$comment = $db->query('SELECT * FROM training ORDER BY id DESC');
+if (!$comment) {
+    die($db->error);
+}
 ?>
 <!DOCTYPE html>
 <html lang="ja">
