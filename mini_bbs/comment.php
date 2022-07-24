@@ -25,5 +25,7 @@ if (!$result) {
 </head>
 <body>
     <?php echo $comment; ?>
+    <br>
+    <a href="index.php">→一覧へ戻る</a>
 </body>
 </html>

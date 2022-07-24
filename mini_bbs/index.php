@@ -15,6 +15,7 @@ if (!$comments) {
 </head>
 <body>
     <h1>コメントリスト</h1>
+    <a href="input.html" style="font-weight: 700;">新規投稿</a>
     <div>
         <?php while ($comment = $comments->fetch_assoc()):?>
             <h2>
