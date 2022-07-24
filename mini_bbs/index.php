@@ -17,7 +17,11 @@ if (!$comments) {
     <h1>コメントリスト</h1>
     <div>
         <?php while ($comment = $comments->fetch_assoc()):?>
-            <h2><a href="#"><?php echo htmlspecialchars($comment['comment']);?></a></h2>
+            <h2>
+                <a href="comment.php?id=<?php echo $comment['id'];?>">
+                    <?php echo htmlspecialchars($comment['comment']);?>
+                </a>
+            </h2>
             <time><?php echo htmlspecialchars($comment['created']);?></time>
             <hr>
         <?php endwhile;?>

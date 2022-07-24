@@ -11,6 +11,7 @@ $stmt->bind_result($id, $comment, $created);
 $result = $stmt->fetch();
 if (!$result) {
     echo '指定された投稿は存在しません';
+    exit();
 }
 ?>
 
@@ -23,6 +24,6 @@ if (!$result) {
     <title>コメント詳細</title>
 </head>
 <body>
-    <?php echo $comment;?>
+    <?php echo $comment; ?>
 </body>
 </html>
