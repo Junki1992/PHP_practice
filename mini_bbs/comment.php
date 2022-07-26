@@ -26,7 +26,7 @@ if (!$result) {
 <body>
     <pre><?php echo $comment; ?></pre>
 
-    <a href="update.php?id=<?php echo $id;?>">編集する</a> | <a href="index.php">一覧へ</a>
+    <a href="update.php?id=<?php echo $id;?>">編集する</a> | <a href="index.php">一覧へ</a> | <a href="delete.php?id=<?php echo $id;?>">削除する</a>
     <br>
     <a href="index.php">→一覧へ戻る</a>
 </body>
