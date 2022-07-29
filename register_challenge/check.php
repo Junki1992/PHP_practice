@@ -7,6 +7,25 @@ if (isset($_SESSION['form'])) {
 } else {
     header('Location: register.php');
 }
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $db = new mysqli('localhost', 'root', 'root', 'bbs_challenge');
+    // エラーチェック
+    if (!$db) {
+        die($db->error);
+    }
+
+    $stmt = $db->prepare('INSERT INTO members(name, password) VALUES(?, ?)');
+
+    // パスワードを暗号化
+    $password = password_hash($form['password'], PASSWORD_DEFAULT);
+    $stmt->bind_param('ss', $form['name'], $password);
+    $success = $stmt->execute();
+    // エラーチェック
+    if (!$success) {
+        die($db->error);
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -20,9 +39,18 @@ if (isset($_SESSION['form'])) {
 <body>
     <h2>入力内容の確認</h2>
     <p>下記の内容で登録します</p>
-    <h3>ニックネーム：<?php echo h($form['name']); ?></h3>
-    <h3>パスワード：<?php echo h($form['password']); ?></h3>
-    <button value="submit">登録する</button>
-    <button value="submit">修正する</button>
+    <form action="" method="POST">
+        <dl>
+            <dd>
+                <h3></h3>ニックネーム：<?php echo h($form['name']); ?></h3>
+            </dt>
+            <dd>
+                <h3>パスワード：【表示されません】</h3>
+            </dd>
+        </dl>
+
+        <button type="submit" value="">登録する</button>
+        <button value="submit">修正する</button>
+    </form>
 </body>
 </html>
