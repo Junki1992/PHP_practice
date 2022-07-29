@@ -1,17 +1,12 @@
 <?php 
 session_start();
-
+require('library.php');
 $form = [
     'name' => '',
     'password' => '',
 ];
 
 $error = [];
-
-// htmlspecialcharsを簡略化
-function h($value) {
-    return htmlspecialchars($value, ENT_QUOTES);
-}
 
 // 入力された情報をチェック
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -23,6 +18,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $form['password'] = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
     if ($form['password'] === '') {
         $error['password'] = 'blank';
+    }
+
+    if (empty($error)) {
+        $_SESSION['form'] = $form;
+        header('Location: check.php');
+        exit();
     }
 }
 ?>

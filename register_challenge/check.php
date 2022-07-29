@@ -1,3 +1,14 @@
+<?php
+session_start();
+require('library.php');
+
+if (isset($_SESSION['form'])) {
+    $form = $_SESSION['form'];
+} else {
+    header('Location: register.php');
+}
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -9,8 +20,8 @@
 <body>
     <h2>入力内容の確認</h2>
     <p>下記の内容で登録します</p>
-    <h3>ニックネーム：</h3>
-    <h3>パスワード：</h3>
+    <h3>ニックネーム：<?php echo h($form['name']); ?></h3>
+    <h3>パスワード：<?php echo h($form['password']); ?></h3>
     <button value="submit">登録する</button>
     <button value="submit">修正する</button>
 </body>
