@@ -1,10 +1,15 @@
 <?php 
 session_start();
 require('library.php');
-$form = [
-    'name' => '',
-    'password' => '',
-];
+
+if (isset($_GET['action']) && $_GET['action'] === 'rewrite' && isset($_SESSION['form'])) {
+    $form = $_SESSION['form'];
+} else {
+    $form = [
+        'name' => '',
+        'password' => '',
+    ];
+}
 
 $error = [];
 
