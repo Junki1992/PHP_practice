@@ -25,6 +25,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!$success) {
         die($db->error);
     }
+
+    header('Location: thanks.php');
 }
 ?>
 
@@ -48,8 +50,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <h3>パスワード：【表示されません】</h3>
             </dd>
         </dl>
-        <button type="submit" value="">登録する</button>
-        <button value="submit">修正する</button>
+        <input type="submit" value="登録する">
+        <div><a href="register.php?action=rewrite">&laquo;&nbsp;修正する</a></div>
     </form>
 </body>
 </html>
