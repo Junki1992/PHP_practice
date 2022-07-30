@@ -48,7 +48,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <h3>パスワード：【表示されません】</h3>
             </dd>
         </dl>
-
         <button type="submit" value="">登録する</button>
         <button value="submit">修正する</button>
     </form>
