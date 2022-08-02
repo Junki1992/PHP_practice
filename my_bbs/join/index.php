@@ -24,6 +24,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($form['password'] === '') {
         $error['password'] = 'blank';
     }
+
+    // 画像ファイルのチェック
+    $image = $_FILES['image'];
+    if ($image['name'] !== '' && $image['error'] === 0) {
+        $type = mime_content_type($image['tmp_name']);
+        if ($type !== 'image/png' && $type !== 'image/jpeg') {
+            $error['image'] = 'type';
+        }
+    }
+
+    // 画像ファイルのアップロード
+    if ($image['name'] !== '') {
+        $filename = date('YmHis') . '_' . $image['name'];
+        if (!move_uploaded_file($image['tmp_name'], '../member_picture/' .$filename)) {
+            die('画像のアップロード失敗しました');
+        }
+        $_SESSION['form']['image'] = $filename;
+    } else {
+        $_SESSION['form']['image'] = '';
+    }
 }
 ?>
 
@@ -44,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <div id="content">
             <p>次のフォームに必要事項をご記入ください</p>
-            <form action="" method="POST">
+            <form action="" method="POST" enctype="multipart/form-data">
                 <dl>
                     <dt>ニックネーム<span class="required">必須</span></dt>
                     <dd>
@@ -75,7 +95,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <dt>写真など</dt>
                     <dd>
                         <input type="file" name="image" size="35" value="">
-                        <p class="error">写真や画像は「.png」か「.jpeg」をご使用ください</p>
+                        <?php if (isset($error['image']) && $error['image'] === 'type'): ?>
+                            <p class="error">写真や画像は「.png」か「.jpeg」をご使用ください</p>
+                        <?php endif; ?>
                         <p class="error">恐れ入りますが、画像を改めて指定してください</p>
                     </dd>
                 </dl>
