@@ -7,6 +7,25 @@ if (isset($_SESSION['form'])) {
 } else {
     header('Location: index.php');
 }
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $db = dbConnect();
+    $stmt = $db->prepare('INSERT INTO members (name, email, password, picture) VALUE(?, ?, ?, ?)');
+    if (!$stmt) {
+        die($db->error);
+    }
+    // パソワードを暗号化
+    $password = password_hash($form['password'], PASSWORD_DEFAULT);
+    
+    $stmt->bind_param('ssss', $form['name'], $form['email'], $password, $form['image']);
+    $success = $stmt->execute();
+    if (!$success) {
+        die($db->error);
+    }
+    
+    header('Location: thanks.php');
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -30,9 +49,9 @@ if (isset($_SESSION['form'])) {
             <form action="" method="POST">
                 <dl>
                     <dt>ニックネーム</dt>
-                    <dd><?php echo $form['name']; ?></dd>
+                    <dd><?php echo h($form['name']); ?></dd>
                     <dt>メールアドレス</dt>
-                    <dd><?php echo $form['email']; ?></dd>
+                    <dd><?php echo h($form['email']); ?></dd>
                     <dt>パスワード</dt>
                     <dd>
                         【表示されません】
