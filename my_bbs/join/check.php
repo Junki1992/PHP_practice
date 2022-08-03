@@ -1,3 +1,11 @@
+<?php
+session_start();
+require('../library.php');
+
+$form = $_SESSION['form'];
+var_dump($form);
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -19,15 +27,15 @@
             <form action="" method="POST">
                 <dl>
                     <dt>ニックネーム</dt>
-                    <dd></dd>
+                    <dd><?php echo $form['name']; ?></dd>
                     <dt>メールアドレス</dt>
-                    <dd></dd>
+                    <dd><?php echo $form['email']; ?></dd>
                     <dt>パスワード</dt>
                     <dd>
                         【表示されません】
                     </dd>
                     <dt>写真など</dt>
-                    <dd><img src="../member_picture" width="100%" alt=""></dd>
+                    <dd><img src="../member_picture/<?php echo h($form['image']); ?>" width="100%" alt=""></dd>
                 </dl>
                 <div><a href="">&laquo;&nbsp;修正する</a> | <input type="submit" value="登録する"></div>
             </form>
