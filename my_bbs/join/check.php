@@ -2,8 +2,11 @@
 session_start();
 require('../library.php');
 
-$form = $_SESSION['form'];
-var_dump($form);
+if (isset($_SESSION['form'])) {
+    $form = $_SESSION['form'];
+} else {
+    header('Location: index.php');
+}
 ?>
 
 <!DOCTYPE html>
@@ -37,7 +40,7 @@ var_dump($form);
                     <dt>写真など</dt>
                     <dd><img src="../member_picture/<?php echo h($form['image']); ?>" width="100%" alt=""></dd>
                 </dl>
-                <div><a href="">&laquo;&nbsp;修正する</a> | <input type="submit" value="登録する"></div>
+                <div><a href="index.php?action=rewrite">&laquo;&nbsp;修正する</a> | <input type="submit" value="登録する"></div>
             </form>
         </div>
     </div>
