@@ -1,4 +1,5 @@
 <?php 
+session_start();
 require('../library.php');
 
 $form = [
@@ -15,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $error['name'] = 'blank';
     }
 
-    $form['email'] = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_STRING);
+    $form['email'] = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
     if ($form['email'] === '') {
         $error['email'] = 'blank';
     }
@@ -34,15 +35,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
-    // 画像ファイルのアップロード
-    if ($image['name'] !== '') {
-        $filename = date('YmHis') . '_' . $image['name'];
-        if (!move_uploaded_file($image['tmp_name'], '../member_picture/' .$filename)) {
-            die('画像のアップロード失敗しました');
+    if (empty($error)) {
+        $_SESSION['form'] = $form;
+        
+        // 画像ファイルのアップロード
+        if ($image['name'] !== '') {
+            $filename = date('YmHis') . '_' . $image['name'];
+            if (!move_uploaded_file($image['tmp_name'], '../member_picture/' .$filename)) {
+                die('画像のアップロード失敗しました');
+            }
+            $_SESSION['form']['image'] = $filename;
+        } else {
+            $_SESSION['form']['image'] = '';
         }
-        $_SESSION['form']['image'] = $filename;
-    } else {
-        $_SESSION['form']['image'] = '';
+        header('Location: check.php');
+        exit();
     }
 }
 ?>
